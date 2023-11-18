@@ -1,0 +1,17 @@
+[Unit]
+Description=ngrok
+After=network.target
+After=syslog.target
+
+[Service]
+Type=simple
+ExecStart=/snap/bin/ngrok http 8502 --basic-auth "user:password" --domain evolving-hedgehog-wholly.ngrok-free.app
+Restart=always
+RestartSec=1
+User=server
+Group=server
+StartLimitBurst=99999
+StartLimitInterval=999999
+
+[Install]
+WantedBy=multi-user.target
