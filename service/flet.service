@@ -1,0 +1,18 @@
+[Unit]
+Description=flet
+After=network.target
+After=syslog.target
+
+[Service]
+Type=simple
+ExecStart=/home/server/.local/bin/uvicorn felt:app --host localhost --port 5000
+WorkingDirectory=/home/server/projects/dcaudio/source 
+Restart=always
+RestartSec=1
+User=server
+Group=server
+StartLimitBurst=99999
+StartLimitInterval=999999
+
+[Install]
+WantedBy=multi-user.target
